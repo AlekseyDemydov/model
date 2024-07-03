@@ -119,6 +119,9 @@ color: white;
   text-align: center;
   margin-top: 5%;
   color: white;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+  }
 }
 
 .modalActions {
@@ -145,11 +148,20 @@ color: white;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-bottom: 15px;
+    width: 100%;
+    @media screen and (max-width: 480px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 7px;
+    }
 }
 .formUp{
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    margin-bottom: 5px;
+  }
   
   p{
     margin: 0;
