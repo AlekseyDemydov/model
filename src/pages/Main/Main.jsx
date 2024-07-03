@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from '../../axios';
+import axios from 'axios';
 import s from './Main.module.scss';
 import List from 'pages/List/List';
 import config from 'config';
