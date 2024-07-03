@@ -1,0 +1,28 @@
+// Footer.module.scss
+.footer {
+  text-align: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  @media screen and (max-width: 480px) {
+    padding: 0 7px;
+  }
+  .footimg {
+    max-width: 40px;
+    height: auto;
+    margin-right: 8px;
+    @media screen and (max-width: 480px) {
+      margin-right: 0;
+    }
+  }
+
+  .discription {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+
+    
+  }
+}

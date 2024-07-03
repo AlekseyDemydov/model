@@ -140,7 +140,7 @@ const Modal = ({ show, onClose, product }) => {
             placeholder="Телефон/Telegram/Whatsapp"
           />
         </div>
-        <div className={s.formGroup}>
+        <div className={`${s.formGroup} ${s.margin}`}>
           <label className={s.switch}>
             <input
               type="checkbox"
@@ -296,7 +296,7 @@ const ProductDetail = () => {
               )}
               <tr className={s.boxbtnBye}>
                 <button className={s.btnBye} onClick={() => setShowModal(true)}>
-                  Заказать проститутку
+                  Заказать девочку
                 </button>
               </tr>
             </tbody>

@@ -16,11 +16,11 @@
   height: auto;
   margin-bottom: 20px;
 }
-.prodInfo{
+.prodInfo {
   width: 100%;
   margin-left: 20px;
 }
-.description{
+.description {
   width: 60%;
   @media screen and (max-width: 1015px) {
     width: 100%;
@@ -32,21 +32,19 @@
   margin-top: 20px;
   background-color: #333; /* Черный фон */
   color: #fff; /* Белый текст */
-
-  
 }
 
 .tableDescLabel {
   font-weight: bold;
   padding: 8px;
-  border-bottom: 1px solid #fff; 
+  border-bottom: 1px solid #fff;
   text-align: left;
   background-color: #333; /* Темно-серый фон для ячеек с метками */
 }
 
 .tableDescValue {
   padding: 8px;
-  border-bottom: 1px solid #fff; 
+  border-bottom: 1px solid #fff;
   text-align: left;
 }
 
@@ -60,20 +58,20 @@
 // .boxbtnBye{
 //   padding: 5px;
 // }
-.btnBye{
+.btnBye {
   cursor: pointer;
   padding: 10px;
   background-color: #dc3545;
   text-align: center;
-border-radius: 15px;
-margin: 10px;
-color: white;
+  border-radius: 15px;
+  margin: 10px;
+  color: white;
 }
 // .boxPlus{
 //   display: flex;
 //   margin-top: 10px;
 // }
-.plus{
+.plus {
   display: inline-block;
   background-color: #dc3545;
   color: white;
@@ -120,7 +118,9 @@ color: white;
   margin-top: 5%;
   color: white;
   @media screen and (max-width: 480px) {
+    margin-top: 2%;
     width: 90%;
+    padding: 6px 20px;
   }
 }
 
@@ -143,51 +143,57 @@ color: white;
   background-color: #0056b3;
 }
 
-.inputBox{
+.inputBox {
   display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 15px;
-    width: 100%;
-    @media screen and (max-width: 480px) {
-      grid-template-columns: repeat(1, 1fr);
-      gap: 7px;
-    }
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  @media screen and (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 7px;
+  }
 }
-.formUp{
+.formUp {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   @media screen and (max-width: 480px) {
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
   }
-  
-  p{
+
+  p {
     margin: 0;
   }
-  input, select{
+  input,
+  select {
     padding: 5px 10px;
     border-radius: 5px;
     background-color: #212529;
     color: white;
     border: solid 1px #495057;
-    width: 100%;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
   }
 }
 .time{
   display: flex;
+  select {
+    width: 100%;
+  }
 }
-.hour{
+.hour {
   margin-right: 5px;
 }
-.minute{
+.minute {
   margin-left: 5px;
 }
 .formGroup {
   margin-bottom: 5px;
   display: flex;
-  p{
+  p {
     margin: 0;
   }
 }
@@ -195,20 +201,22 @@ color: white;
 .noScroll {
   overflow: hidden;
 }
-
+.margin{
+  margin-top: 7px;
+}
 .switch {
   position: relative;
   display: inline-block;
   width: 40px; /* Уменьшаем ширину на 10px */
   height: 22px; /* Уменьшаем высоту на 10px */
   margin-right: 10px;
+  
 }
 
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
-
 }
 
 .slider {
@@ -219,24 +227,24 @@ color: white;
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 15px; /* Подстраиваем радиус границы */
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 15px; /* Уменьшаем высоту круга на 8px */
   width: 15px; /* Уменьшаем ширину круга на 8px */
   left: 3px; /* Регулируем положение круга */
   bottom: 4px; /* Регулируем положение круга */
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 input:checked + .slider:before {

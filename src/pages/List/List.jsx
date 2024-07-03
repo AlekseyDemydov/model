@@ -33,7 +33,7 @@ const List = ({ products, handleDelete }) => {
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const totalPages = Math.ceil(products.length / productsPerPage);
-
+const city = localStorage.getItem('city')
   return (
     <Container>
       <Row>
@@ -48,8 +48,8 @@ const List = ({ products, handleDelete }) => {
               />
             </div>
             <div className={styles.description}>
-              <div className={styles.title}>{product.name}</div>
-              <h2>Город</h2>
+              <h2 className={styles.title}>{product.name}</h2>
+              <p>{city}</p>
               <ul className={styles.listDescr}>
                 {product.height && <li className={styles.listDesc}>Рост: {product.height}</li>}
                 {product.weight && <li className={styles.listDesc}>Вес: {product.weight}</li>}

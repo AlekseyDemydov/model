@@ -2,20 +2,11 @@ import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './Question.module.scss';
 
-
 const Question = () => {
   return (
     <div className={styles['accordion-container']}>
       <h1>Часто задаваемые вопросы</h1>
       <Accordion data-bs-theme="dark">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Возврат оплаты</Accordion.Header>
-          <Accordion.Body>
-            Возврат оплаты (полной стоимости или предоплаты) возможен, если до
-            начала встречи остается более суток. Возврат осуществляется тем же
-            способом, каким была произведена оплата.
-          </Accordion.Body>
-        </Accordion.Item>
         <Accordion.Item eventKey="1">
           <Accordion.Header>
             Если я стану постоянным клиентом агентства, какие преимущества у
@@ -47,15 +38,23 @@ const Question = () => {
             повода.
           </Accordion.Body>
         </Accordion.Item>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Возврат оплаты</Accordion.Header>
+          <Accordion.Body>
+            Возврат оплаты (полной стоимости или предоплаты) возможен, если до
+            начала встречи остается более суток. Возврат осуществляется тем же
+            способом, каким была произведена оплата.
+          </Accordion.Body>
+        </Accordion.Item>
         <Accordion.Item eventKey="4">
           <Accordion.Header>
             Как гарантировать безопасность встречи?
           </Accordion.Header>
           <Accordion.Body>
             Мы обеспечиваем конфиденциальность и безопасность встречи. Все наши
-            модели проходят проверку на здоровье и не имеют проблем с
-            законом. Мы также рекомендуем вам оставаться в безопасном месте и не
-            сообщать личную информацию.
+            модели проходят проверку на здоровье и не имеют проблем с законом.
+            Мы также рекомендуем вам оставаться в безопасном месте и не сообщать
+            личную информацию.
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

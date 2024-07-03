@@ -4,8 +4,7 @@ import axios from 'axios';
 import s from './Main.module.scss';
 import List from 'pages/List/List';
 import config from 'config';
-import './Main.css';
-import cities from './city';
+import cities from 'city';
 
 const Main = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +13,6 @@ const Main = () => {
   const [showModal, setShowModal] = useState(false);
   const [city, setCity] = useState('');
   const [showList, setShowList] = useState(false);
-  const [filteredCities, setFilteredCities] = useState(cities.sort());
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('adminEmail') || '';
@@ -65,17 +63,6 @@ const Main = () => {
     }, 2000); // Задержка на 2 секунды после закрытия модалки
   };
 
-  const handleCityChange = (e) => {
-    const searchValue = e.target.value;
-    setCity(searchValue);
-    const filtered = cities
-      .filter((cityName) =>
-        cityName.toLowerCase().includes(searchValue.toLowerCase())
-      )
-      .sort();
-    setFilteredCities(filtered);
-  };
-
   if (error) {
     return <div>{error}</div>;
   }
@@ -86,18 +73,16 @@ const Main = () => {
         <div className={s.overlay}>
           <div className={s.modal}>
             <h2>Введите ваш город</h2>
-            <input
-              type="text"
+            <select
               value={city}
-              onChange={handleCityChange}
+              onChange={(e) => setCity(e.target.value)}
               placeholder="Ваш город"
-              list="cities"
-            />
-            <datalist id="cities">
-              {filteredCities.map((cityName, index) => (
-                <option key={index} value={cityName} />
+            >
+              <option value="" disabled>Выберите город</option>
+              {cities.map((cityName, index) => (
+                <option key={index} value={cityName}>{cityName}</option>
               ))}
-            </datalist>
+            </select>
             <button onClick={handleCitySubmit}>Сохранить</button>
           </div>
         </div>
@@ -109,11 +94,7 @@ const Main = () => {
       )}
       <div className={s.listContainer}>
         <div className={s.listBox}>
-          {showList ? (
-            <List products={products} handleDelete={handleDelete} />
-          ) : (
-            <div className="loader">Loading...</div>
-          )}
+          {showList ? <List products={products} handleDelete={handleDelete} /> : <p>Загрузка...</p>}
         </div>
       </div>
     </>
