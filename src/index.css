@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(235, 232, 232);
+  font-family: "Mulish", sans-serif;
+  background-image: url(./img/5OUIVKy.png);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  color: white;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a{
+  list-style: none;
+  text-decoration: none;
+}
+
+.feedbackContainer {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.customFileUpload {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.customFileUpload:hover {
+  background-color: #0056b3;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileName {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
+}
+
+.feedbackList {
+  margin-top: 20px;
+  height: 400px; /* встановлюємо висоту каруселі */
+}
+
+.feedbackItem {
+  position: relative;
+  padding: 10px;
+}
+
+.image {
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.inpImgUrl{
+  display: none;
+}
+.image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 300px;
+  padding: 5px 10px;
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #e44b4b;
+}
+
+
+
+
+
+

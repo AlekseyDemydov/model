@@ -1,0 +1,114 @@
+.item {
+  position: relative;
+  margin-bottom: 15px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  background-color: #fff;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.imgBox {
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative;
+
+  .image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.description {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 80%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  transform: translate(-50%, -50%);
+ 
+  transition: background 0.3s ease;
+
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .listDescr {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    .listDesc {
+      margin-bottom: 5px;
+      margin-right: 12px;
+    }
+  }
+}
+
+.btnDelete {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ff1a1a;
+  }
+}
+
+.link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px; // отступ снизу
+  width: 80%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+@media (min-width: 768px) {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .item {
+    flex: 1 0 30%; // Каждая колонка занимает 30% ширины родителя, чтобы было по 3 в ряд
+    max-width: 30%;
+    margin: 0 15px 15px 15px; // Отступы между карточками
+
+    &:nth-of-type(3n) {
+      margin-right: 0; // Удаление правого отступа для последней колонки в каждом ряду
+    }
+  }
+}
