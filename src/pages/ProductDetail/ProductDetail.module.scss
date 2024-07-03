@@ -172,7 +172,11 @@ color: white;
     background-color: #212529;
     color: white;
     border: solid 1px #495057;
+    width: 100%;
   }
+}
+.time{
+  display: flex;
 }
 .hour{
   margin-right: 5px;

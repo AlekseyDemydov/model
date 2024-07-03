@@ -68,7 +68,7 @@ const Modal = ({ show, onClose, product }) => {
         </div>
         <div className={s.formUp}>
           <label htmlFor="meetingTime">Время:</label>
-          <div>
+          <div className={s.time}>
             <select
             className={s.hour}
               id="meetingHour"
