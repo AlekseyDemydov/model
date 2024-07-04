@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import Select from 'react-select';
 import s from './Main.module.scss';
 import List from 'pages/List/List';
 import config from 'config';
@@ -14,7 +15,8 @@ const Main = () => {
   const [showModal, setShowModal] = useState(false);
   const [city, setCity] = useState('');
   const [showList, setShowList] = useState(false);
-  const [filteredCities, setFilteredCities] = useState(cities.sort());
+
+  const sortedCities = cities.sort().map(city => ({ value: city, label: city }));
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('adminEmail') || '';
@@ -65,15 +67,45 @@ const Main = () => {
     }, 2000); // Задержка на 2 секунды после закрытия модалки
   };
 
-  const handleCityChange = (e) => {
-    const searchValue = e.target.value;
-    setCity(searchValue);
-    const filtered = cities
-      .filter((cityName) =>
-        cityName.toLowerCase().includes(searchValue.toLowerCase())
-      )
-      .sort();
-    setFilteredCities(filtered);
+  const handleCityChange = (selectedOption) => {
+    setCity(selectedOption ? selectedOption.value : '');
+  };
+
+  const filterOption = (option, inputValue) => {
+    return option.label.toLowerCase().startsWith(inputValue.toLowerCase());
+  };
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: '#333',
+      color: '#fff',
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: '#333',
+      color: '#fff',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: '#fff',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#555' : '#333',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#555',
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#ccc',
+    }),
   };
 
   if (error) {
@@ -86,18 +118,15 @@ const Main = () => {
         <div className={s.overlay}>
           <div className={s.modal}>
             <h2>Введите ваш город</h2>
-            <input
-              type="text"
-              value={city}
+            <Select
+              value={sortedCities.find(option => option.value === city)}
               onChange={handleCityChange}
+              options={sortedCities}
               placeholder="Ваш город"
-              list="cities"
+              isClearable
+              filterOption={filterOption}
+              styles={customStyles}
             />
-            <datalist id="cities">
-              {filteredCities.map((cityName, index) => (
-                <option key={index} value={cityName} />
-              ))}
-            </datalist>
             <button onClick={handleCitySubmit}>Сохранить</button>
           </div>
         </div>
