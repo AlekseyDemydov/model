@@ -42,7 +42,7 @@ const Payment = () => {
       console.error('Ошибка при копировании:', err);
     });
   };
-
+const totalPrice = localStorage.getItem('totalPrice')
   return (
     <div className={s.payment}>
       <div className={s.cardForPay}>
@@ -74,7 +74,7 @@ const Payment = () => {
         </ol>
       </div>
       <div className={s.price}>
-        <h3>К оплате: 5500 руб</h3>
+        <h3>К оплате: {totalPrice} руб</h3>
       </div>
       <button onClick={handleClick}>Отправить чек менеджеру</button>
       <div className={s.bankImg}>
