@@ -61,87 +61,82 @@ const Modal = ({ show, onClose, product }) => {
   <div className={s.modalContent}>
     <h2>Оформление встречи</h2>
     <div className={s.inputBox}>
-      <div className={s.formUp}>
-        <label htmlFor="meetingDate">Дата:</label>
-        <input
-          type="date"
-          id="meetingDate"
-          value={meetingDate}
-          onChange={e => setMeetingDate(e.target.value)}
-          required // делаем поле обязательным
-        />
-      </div>
-      <div className={s.formUp}>
-        <label htmlFor="meetingTime">Время:</label>
-        <div className={s.time}>
-          <select
-            className={s.hour}
-            id="meetingHour"
-            value={meetingTime.split(':')[0]}
-            onChange={e =>
-              setMeetingTime(
-                `${e.target.value}:${meetingTime.split(':')[1]}`
-              )
-            }
-            required // делаем поле обязательным
-          >
-            {[...Array(24).keys()].map(hour => (
-              <option key={hour} value={hour}>
-                {hour < 10 ? `0${hour}` : hour}
-              </option>
-            ))}
-          </select>
-          :
-          <select
-            className={s.minute}
-            id="meetingMinute"
-            value={meetingTime.split(':')[1]}
-            onChange={e =>
-              setMeetingTime(
-                `${meetingTime.split(':')[0]}:${e.target.value}`
-              )
-            }
-            required // делаем поле обязательным
-          >
-            {[...Array(60).keys()].map(minute => (
-              <option key={minute} value={minute}>
-                {minute < 10 ? `0${minute}` : minute}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+          <div className={s.formUp}>
+            <label htmlFor="meetingDate">Дата:</label>
+            <input
+              type="date"
+              id="meetingDate"
+              value={meetingDate}
+              onChange={e => setMeetingDate(e.target.value)}
+            />
+          </div>
+          <div className={s.formUp}>
+            <label htmlFor="meetingTime">Время:</label>
+            <div className={s.time}>
+              <select
+                className={s.hour}
+                id="meetingHour"
+                value={meetingTime.split(':')[0]} // Получаем часы из текущего времени
+                onChange={e =>
+                  setMeetingTime(
+                    `${e.target.value}:${meetingTime.split(':')[1]}`
+                  )
+                } // Обновляем только часы
+              >
+                {[...Array(24).keys()].map(hour => (
+                  <option key={hour} value={hour}>
+                    {hour < 10 ? `0${hour}` : hour}
+                  </option>
+                ))}
+              </select>
+              :
+              <select
+                className={s.minute}
+                id="meetingMinute"
+                value={meetingTime.split(':')[1]} // Получаем минуты из текущего времени
+                onChange={e =>
+                  setMeetingTime(
+                    `${meetingTime.split(':')[0]}:${e.target.value}`
+                  )
+                } // Обновляем только минуты
+              >
+                {[...Array(60).keys()].map(minute => (
+                  <option key={minute} value={minute}>
+                    {minute < 10 ? `0${minute}` : minute}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-      <div className={s.formUp}>
-        <label htmlFor="meetingPlace">Место:</label>
-        <select
-          id="meetingPlace"
-          value={meetingPlace}
-          onChange={e => setMeetingPlace(e.target.value)}
-          required // делаем поле обязательным
-        >
-          <option value="">Выберите место</option>
-          <option value="Отель">Отель</option>
-          <option value="У модели">У модели</option>
-          <option value="Салон">Салон</option>
-          <option value="У клиента">У клиента</option>
-        </select>
-      </div>
-      <div className={s.formUp}>
-        <label htmlFor="meetingDuration">Длительность:</label>
-        <select
-          id="meetingDuration"
-          value={meetingDuration}
-          onChange={e => setMeetingDuration(e.target.value)}
-          required // делаем поле обязательным
-        >
-          <option value="">Выберите длительность</option>
-          <option value="1">1 час / 5000₽</option>
-          <option value="3">3 часа / 10000₽</option>
-          <option value="night">Ночь / 20000₽</option>
-        </select>
-      </div>
-    </div>
+          <div className={s.formUp}>
+            <label htmlFor="meetingPlace">Место:</label>
+            <select
+              id="meetingPlace"
+              value={meetingPlace}
+              onChange={e => setMeetingPlace(e.target.value)}
+            >
+              <option value="">Выберите место</option>
+              <option value="Отель">Отель</option>
+              <option value="У модели">У модели</option>
+              <option value="Салон">Салон</option>
+              <option value="У клиента">У клиента</option>
+            </select>
+          </div>
+          <div className={s.formUp}>
+            <label htmlFor="meetingDuration">Длительность:</label>
+            <select
+              id="meetingDuration"
+              value={meetingDuration}
+              onChange={e => setMeetingDuration(e.target.value)}
+            >
+              <option value="">Выберите длительность</option>
+              <option value="1">1 час / 5000₽</option>
+              <option value="3">3 часа / 10000₽</option>
+              <option value="night">Ночь / 20000₽</option>
+            </select>
+          </div>
+        </div>
 
     <div className={s.formUp}>
       <label htmlFor="contactInfo">Контактная информация:</label>
