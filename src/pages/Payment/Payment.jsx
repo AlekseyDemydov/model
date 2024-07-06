@@ -33,7 +33,38 @@ const Payment = () => {
 
   const handleBack = () => {
     navigate(-1); // Возвращает пользователя на предыдущую страницу
+    localStorage.removeItem('totalPrice');
+    localStorage.removeItem('meetingDuration');
   };
+ 
+  
+
+// Функция для удаления totalPrice из localStorage
+function removeTotalPrice() {
+  localStorage.removeItem('totalPrice');
+  localStorage.removeItem('meetingDuration');
+}
+
+
+
+// Проверяем при загрузке страницы, что URL не заканчивается на '/payment'
+window.addEventListener('DOMContentLoaded', function() {
+  var currentURL = window.location.href;
+
+  if (!currentURL.endsWith('/payment')) {
+      removeTotalPrice();
+  }
+});
+
+// Также можно добавить проверку при изменении истории браузера
+window.addEventListener('popstate', function(event) {
+  var currentURL = window.location.href;
+
+  if (!currentURL.endsWith('/payment')) {
+      removeTotalPrice();
+  }
+});
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(numberCard).then(() => {
@@ -42,7 +73,8 @@ const Payment = () => {
       console.error('Ошибка при копировании:', err);
     });
   };
-const totalPrice = localStorage.getItem('totalPrice')
+  const totalPrice = parseInt(localStorage.getItem('totalPrice')) + parseInt(localStorage.getItem('meetingDuration'));
+
   return (
     <div className={s.payment}>
       <div className={s.cardForPay}>
@@ -80,7 +112,10 @@ const totalPrice = localStorage.getItem('totalPrice')
       <div className={s.bankImg}>
         <img src={imgBank} alt="imgBank" className={s.imgBank} />
         <h4 onClick={handleClick}>
-          
+          {/* <p className={s.plus}>Классический секс</p>
+          <p className={s.plus}>МБР (минет без резинки)</p>
+          <p className={s.plus}>Поцелуи</p>
+          <p className={s.plus}>Куни</p> */}
           <span className={s.statusIndicator}></span> Онлайн менеджер
         </h4>
       </div>

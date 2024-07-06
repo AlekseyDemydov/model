@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import s from './ProductDetail.module.scss'; // Подключаем файл стилей
 import config from '../../config';
 
@@ -10,15 +10,29 @@ const Modal = ({ show, onClose, product }) => {
   const [meetingPlace, setMeetingPlace] = useState('');
   const [meetingDuration, setMeetingDuration] = useState('');
   const [contactInfo, setContactInfo] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
   const [services, setServices] = useState({
-    domination: false,
-    bondage: false,
-    eroticMassage: false,
-    tying: false,
-    threesomeMFM: false,
-    threesomeFMF: false,
+    car: false,
+    qwest: false,
+    card: false,
+    massage: false,
+    jump: false,
+    freegame: false,
+    goup: false,
     rolePlaying: false,
   });
+  const navigate = useNavigate();
+
+  const price = {
+    car: 1500,
+    qwest: 2000,
+    card: 1000,
+    massage: 1500,
+    jump: 2000,
+    freegame: 5000,
+    goup: 8500,
+    rolePlaying: 3000,
+  };
 
   useEffect(() => {
     if (show) {
@@ -42,35 +56,59 @@ const Modal = ({ show, onClose, product }) => {
   };
 
   const handleServiceChange = service => {
-    setServices(prevServices => ({
-      ...prevServices,
-      [service]: !prevServices[service],
-    }));
+    setServices(prevServices => {
+      const newServices = {
+        ...prevServices,
+        [service]: !prevServices[service],
+      };
+
+      // Пересчитываем общую стоимость
+      let newTotalPrice = 0;
+
+      // Добавляем стоимость всех выбранных услуг
+      for (const [key, value] of Object.entries(newServices)) {
+        if (value) {
+          newTotalPrice += price[key];
+        }
+      }
+
+      setTotalPrice(newTotalPrice);
+
+      return newServices;
+    });
   };
+
   const handlePaymentClick = () => {
     // Проверяем, заполнены ли все обязательные поля
-    if (!meetingDate || !meetingTime || !meetingPlace || !meetingDuration || !contactInfo) {
+    if (
+      !meetingDate ||
+      !meetingTime ||
+      !meetingPlace ||
+      !meetingDuration
+    ) {
       alert('Пожалуйста, заполните все обязательные поля.');
       return; // Останавливаем выполнение функции, чтобы не произошло перехода на страницу оплаты
     }
-    <NavLink to="/payment"></NavLink>
+
+    // Сохраняем выбранные услуги и общую стоимость в local storage
+ 
+    localStorage.setItem('totalPrice', totalPrice);
+    setTimeout(() => {
+    navigate('/payment');
+  }, 2000); // Задержка на 2 секунды
   
-  }
-  const price={
-    anal:'1500',
-    domination: '2000',
-    bondag:'1000',
-    masage:'1500',
-    svaz:'2000',
-    mgm:'5000',
-    gmg:'8500'
-  }
+  };
+  const handleMeetingDurationChange = duration => {
+    setMeetingDuration(duration);
   
+    // Сохраняем выбранную длительность в локальное хранилище
+    localStorage.setItem('meetingDuration', duration);
+  };
   return (
     <div className={s.modal} onClick={handleOverlayClick}>
-  <div className={s.modalContent}>
-    <h2>Оформление встречи</h2>
-    <div className={s.inputBox}>
+      <div className={s.modalContent}>
+        <h2>Оформление встречи</h2>
+        <div className={s.inputBox}>
           <div className={s.formUp}>
             <label htmlFor="meetingDate">Дата:</label>
             <input
@@ -119,7 +157,6 @@ const Modal = ({ show, onClose, product }) => {
               </select>
             </div>
           </div>
-
           <div className={s.formUp}>
             <label htmlFor="meetingPlace">Место:</label>
             <select
@@ -139,92 +176,90 @@ const Modal = ({ show, onClose, product }) => {
             <select
               id="meetingDuration"
               value={meetingDuration}
-              onChange={e => setMeetingDuration(e.target.value)}
+              onChange={e => handleMeetingDurationChange(e.target.value)}
             >
               <option value="">Выберите длительность</option>
-              <option value="1">1 час / {product.priceOne}₽</option>
-              <option value="3">3 часа / {product.priceThree}₽</option>
-              <option value="night">Ночь / {product.priceNight}₽</option>
+              <option value={product.priceOne}>1 час / {product.priceOne}₽</option>
+              <option value={product.priceThree}>3 часа / {product.priceThree}₽</option>
+              <option value={product.priceNight}>Ночь / {product.priceNight}₽</option>
             </select>
           </div>
         </div>
-
-    <div className={s.formUp}>
-      <label htmlFor="contactInfo">Контактная информация:</label>
-      <input
-        type="text"
-        id="contactInfo"
-        value={contactInfo}
-        onChange={e => setContactInfo(e.target.value)}
-        placeholder="Телефон/Telegram/Whatsapp"
-        required // делаем поле обязательным
-      />
-    </div>
-    <div className={`${s.formGroup} ${s.margin}`}>
+        <div className={s.formUp}>
+          <label htmlFor="contactInfo">Контактная информация:</label>
+          <input
+            type="text"
+            id="contactInfo"
+            value={contactInfo}
+            onChange={e => setContactInfo(e.target.value)}
+            placeholder="Телефон/Telegram/Whatsapp"
+          />
+        </div>
+        <div className={`${s.formGroup} ${s.margin}`}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.domination}
-              onChange={() => handleServiceChange('domination')}
+              checked={services.car}
+              onChange={() => handleServiceChange('car')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Анал +{price.anal}₽</p>
+          <p>Авто +{price.car}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.bondage}
-              onChange={() => handleServiceChange('bondage')}
+              checked={services.qwest}
+              onChange={() => handleServiceChange('qwest')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Доминирование +{price.domination}₽</p>
+          <p>qwest +{price.qwest}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.eroticMassage}
-              onChange={() => handleServiceChange('eroticMassage')}
+              checked={services.card}
+              onChange={() => handleServiceChange('card')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Бондаж +{price.bondag}₽</p>
+          <p>card +{price.card}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.tying}
-              onChange={() => handleServiceChange('tying')}
+              checked={services.massage}
+              onChange={() => handleServiceChange('massage')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Массаж эро +{price.masage}₽</p>
+          <p>Массаж +{price.massage}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.threesomeMFM}
-              onChange={() => handleServiceChange('threesomeMFM')}
+              checked={services.freegame}
+              onChange={() => handleServiceChange('freegame')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Связывание +{price.svaz}₽</p>
+          <p>freegame +{price.freegame}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.threesomeFMF}
-              onChange={() => handleServiceChange('threesomeFMF')}
+              checked={services.goup}
+              onChange={() => handleServiceChange('goup')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>МЖМ +{price.mgm}₽</p>
+          <p>goup +{price.goup}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -235,16 +270,27 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>ЖМЖ +{price.gmg}₽</p>
+          <p>Ролевые игры +{price.rolePlaying}₽</p>
         </div>
-    <div className={s.modalActions}>
-      <button onClick={handlePaymentClick}  className={s.modalButton}>
-        Оплатить
-      </button>
+        <div className={s.formGroup}>
+          <label className={s.switch}>
+            <input
+              type="checkbox"
+              checked={services.jump}
+              onChange={() => handleServiceChange('jump')}
+            />
+            <span className={s.slider}></span>
+          </label>
+          <p>jump +{price.jump}₽</p>
+        </div>
+        <div className={s.modalActions}>
+          <p className={s.totalPrice}>Итого: {totalPrice}₽</p>
+          <button onClick={handlePaymentClick} className={s.modalButton}>
+            Оплатить
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
@@ -253,6 +299,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  // const navigate = useNavigate();
   const userEmail = localStorage.getItem('adminEmail') || '';
 
   useEffect(() => {
@@ -317,17 +364,11 @@ const ProductDetail = () => {
               )}
               <tr className={s.boxbtnBye}>
                 <button className={s.btnBye} onClick={() => setShowModal(true)}>
-                  Заказать девочку
+                  Заказать игру
                 </button>
               </tr>
             </tbody>
           </table>
-          {/* <div className={s.boxPlus}> */}
-          <p className={s.plus}>Классический секс</p>
-          <p className={s.plus}>МБР (минет без резинки)</p>
-          <p className={s.plus}>Поцелуи</p>
-          <p className={s.plus}>Куни</p>
-          {/* </div> */}
         </div>
       </div>
       {userEmail === 'ivan@gmail.com' && (
