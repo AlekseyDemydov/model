@@ -113,14 +113,14 @@ window.addEventListener('popstate', function(event) {
       <div className={s.price}>
         <h3>К оплате: {totalPrice} руб</h3>
       </div>
+      <input type="text" className={s.inputPay} value={numberCard} readOnly />
+      <input type="text" className={s.inputPay} value={numberCard} readOnly />
+      <input type="text" className={s.inputPay} value={numberCard} readOnly />
       <button onClick={handleClick}>Отправить чек менеджеру</button>
       <div className={s.bankImg}>
         <img src={imgBank} alt="imgBank" className={s.imgBank} />
         <h4 onClick={handleClick}>
-          {/* <p className={s.plus}>Классический секс</p>
-          <p className={s.plus}>МБР (минет без резинки)</p>
-          <p className={s.plus}>Поцелуи</p>
-          <p className={s.plus}>Куни</p> */}
+          
           <span className={s.statusIndicator}></span> Онлайн менеджер
         </h4>
       </div>

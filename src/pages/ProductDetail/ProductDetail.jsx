@@ -372,6 +372,10 @@ const ProductDetail = () => {
               </tr>
             </tbody>
           </table>
+          <p className={s.plus}>Классический секс</p>
+          <p className={s.plus}>МБР (минет без резинки)</p>
+          <p className={s.plus}>Поцелуи</p>
+          <p className={s.plus}>Куни</p>
         </div>
       </div>
       {userEmail === 'ivan@gmail.com' && (

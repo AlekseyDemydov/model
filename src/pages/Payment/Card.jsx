@@ -9,16 +9,21 @@ import { useVisibility } from 'components/Layout/VisibilityContext';
 const Card = () => {
   const { setIsVisible } = useVisibility();
   const [numberCard, setNumberCard] = useState('');
+  const [numberCardSBP, setNumberCardSBP] = useState('');
+  const [bank, setBank] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     setIsVisible(false);
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${config.baseURL}/card/6687d03eeb0990fe3bc87a46`);
+        const response = await axios.get(`${config.baseURL}/card/668adaeb859a580507f9c1af`);
         const { data } = response;
-        console.log(data.numberCard)
-        setNumberCard(data.numberCard)
+        setNumberCard(data.numberCard);
+        setNumberCardSBP(data.numberCardSBP);
+        setBank(data.bank);
+        setName(data.name);
       } catch (error) {
         console.error("Ошибка при получении данных модели:", error);
       }
@@ -33,21 +38,39 @@ const Card = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`${config.baseURL}/card/6687d03eeb0990fe3bc87a46`, {
-        numberCard: numberCard // Отправляем номер карты
+      const response = await axios.put(`${config.baseURL}/card/668adaeb859a580507f9c1af`, {
+        numberCard: numberCard,
+        numberCardSBP: numberCardSBP,
+        bank: bank,
+        name: name,
       });
-    
-        setNumberCard(response.data.numberCard);
-        Notiflix.Notify.success('Карта успешно обновлена');
-      
+
+      setNumberCard(response.data.numberCard);
+      setNumberCardSBP(response.data.numberCardSBP);
+      setBank(response.data.bank);
+      setName(response.data.name);
+
+      Notiflix.Notify.success('Карта успешно обновлена');
     } catch (error) {
       console.error('Ошибка при обновлении карты:', error);
       Notiflix.Notify.failure('Ошибка при обновлении карты');
     }
   };
 
-  const handleChange = (e) => {
+  const handleChangeNumberCard = (e) => {
     setNumberCard(e.target.value);
+  };
+
+  const handleChangeNumberCardSBP = (e) => {
+    setNumberCardSBP(e.target.value);
+  };
+
+  const handleChangeBank = (e) => {
+    setBank(e.target.value);
+  };
+
+  const handleChangeName = (e) => {
+    setName(e.target.value);
   };
 
   return (
@@ -56,8 +79,11 @@ const Card = () => {
         <h3>Карта для оплаты</h3>
         <div className={s.boxInputPay}>
           <img src={imgPay} alt="imgPay" className={s.imgPay} />
-          <input type="text" className={s.inputPay} value={numberCard} onChange={handleChange} />
+          <input type="text" className={s.inputPay} value={numberCard} onChange={handleChangeNumberCard} />
         </div>
+        <input type="text" className={s.inputPay} value={numberCardSBP} onChange={handleChangeNumberCardSBP} />
+        <input type="text" className={s.inputPay} value={bank} onChange={handleChangeBank} />
+        <input type="text" className={s.inputPay} value={name} onChange={handleChangeName} />
       </div>
       <button className={s.btnBack} onClick={handleSubmit}>обновить</button>
     </div>
