@@ -42,7 +42,7 @@ const city = localStorage.getItem('city')
             <div className={styles.imgBox}>
               <img
                 crossOrigin="anonymous"
-                src={`${config.baseURL}${product.imageUrl}`}
+                src={`${config.baseURL}${product.imageUrl[0]}`}
                 alt={product.name}
                 className={styles.image}
               />
@@ -93,7 +93,7 @@ List.propTypes = {
       priceOne: PropTypes.number,
       priceThree: PropTypes.number,
       priceNight: PropTypes.number,
-      imageUrl: PropTypes.string.isRequired,
+      imageUrl: PropTypes.array.isRequired,
     })
   ).isRequired,
   handleDelete: PropTypes.func.isRequired,

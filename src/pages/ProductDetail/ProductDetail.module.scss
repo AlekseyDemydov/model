@@ -179,6 +179,12 @@
     appearance: none;
   }
 }
+.totalPrice{
+  display: none;
+}
+.dateInput{
+  width: 100%;
+}
 .time{
   display: flex;
   select {

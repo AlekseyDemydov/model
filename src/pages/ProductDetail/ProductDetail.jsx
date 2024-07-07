@@ -3,9 +3,12 @@ import axios from 'axios';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import s from './ProductDetail.module.scss'; // Подключаем файл стилей
 import config from '../../config';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import ProductSlider from './Slider/Slider';
 
 const Modal = ({ show, onClose, product }) => {
-  const [meetingDate, setMeetingDate] = useState('');
+  const [meetingDate, setMeetingDate] = useState(null);
   const [meetingTime, setMeetingTime] = useState('');
   const [meetingPlace, setMeetingPlace] = useState('');
   const [meetingDuration, setMeetingDuration] = useState('');
@@ -111,13 +114,14 @@ const Modal = ({ show, onClose, product }) => {
         <div className={s.inputBox}>
           <div className={s.formUp}>
             <label htmlFor="meetingDate">Дата:</label>
-            <input
-              type="date"
-              id="meetingDate"
-              value={meetingDate}
-              onChange={e => setMeetingDate(e.target.value)}
-              placeholder="выбирите дату"
-            />
+            <DatePicker
+          selected={meetingDate}
+          onChange={date => setMeetingDate(date)}
+          placeholderText="выберите дату"
+          dateFormat="yyyy-MM-dd"
+          className={s.dateInput}
+          id="meetingDate"
+        />
           </div>
           <div className={s.formUp}>
             <label htmlFor="meetingTime">Время:</label>
@@ -327,13 +331,16 @@ const ProductDetail = () => {
 
   return (
     <div className={s.detBox}>
-      {product.imageUrl && (
+      {/* {product.imageUrl && (
         <img
           className={s.imgDet}
           crossOrigin="anonymous"
           src={`${config.baseURL}${product.imageUrl}`}
           alt={product.name}
         />
+      )} */}
+      {product.imageUrl && (
+        <ProductSlider images={product.imageUrl}/>
       )}
       <div className={s.prodInfo}>
         <h2>{product.name}</h2>

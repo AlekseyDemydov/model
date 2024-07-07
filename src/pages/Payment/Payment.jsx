@@ -13,9 +13,13 @@ const Payment = () => {
   const navigate = useNavigate();
   const [numberCard, setNumberCard] = useState('');
   const userEmail = localStorage.getItem('adminEmail') || '';
+
+
   const handleClick = () => {
     window.open('https://t.me/nick', '_blank');
   };
+
+  
   useEffect(() => {
     setIsVisible(false);
 

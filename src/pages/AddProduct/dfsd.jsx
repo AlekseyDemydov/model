@@ -55,17 +55,21 @@ const AddProduct = () => {
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();
-      const files = event.target.files; // Получаем все выбранные файлы
-      for (let i = 0; i < files.length; i++) {
-        formData.append("images", files[i]);
-      }
-      // const { data } = await axios.post("http://localhost:4444/upload", formData);
+      const files = Array.from(event.target.files);
+
+      files.forEach((file, index) => {
+        formData.append(`image${index}`, files);
+      });
+
       const { data } = await axios.post("/upload", formData);
-      // data.urls содержит массив всех загруженных ссылок
-      setProductData((prevData) => ({ ...prevData, imageUrl: data.urls }));
+      // Обновляем imageUrl с массивом URL файлов
+      setProductData((prevData) => ({
+        ...prevData,
+        imageUrl: data.urls // Предполагаем, что на сервере возвращается массив URL
+      }));
     } catch (err) {
       console.warn(err);
-      alert("Ошибка при загрузке файлов");
+      alert("Ошибка при загрузке файла");
     }
   };
 
