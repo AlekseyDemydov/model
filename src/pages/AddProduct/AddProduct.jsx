@@ -36,6 +36,7 @@ const AddProduct = () => {
             priceOne: data.priceOne || 0,
             priceThree: data.priceThree || 0,
             priceNight: data.priceNight || 0,
+            tgAdmin: data.tgAdmin || "",
             imageUrl: data.imageUrl || ""
           });
         } catch (error) {
@@ -59,8 +60,8 @@ const AddProduct = () => {
       for (let i = 0; i < files.length; i++) {
         formData.append("images", files[i]);
       }
-      // const { data } = await axios.post("http://localhost:4444/upload", formData);
-      const { data } = await axios.post("/upload", formData);
+      const { data } = await axios.post("http://localhost:4444/upload", formData);
+      // const { data } = await axios.post("/upload", formData);
       // data.urls содержит массив всех загруженных ссылок
       setProductData((prevData) => ({ ...prevData, imageUrl: data.urls }));
     } catch (err) {
@@ -95,6 +96,11 @@ const AddProduct = () => {
         <label>
           Имя:
           <input type="text" name="name" value={productData.name} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          tgAdmin:
+          <input type="text" name="tgAdmin" value={productData.tgAdmin} onChange={handleChange} placeholder="юзернейм" />
         </label>
         <br />
         <label>

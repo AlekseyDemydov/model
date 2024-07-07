@@ -1,0 +1,9 @@
+.zindex{
+    z-index: 1;
+}
+.carousel-item {
+    width: 462px!important;
+    @media screen and (max-width: 480px) {
+        width: 100%!important;
+      }
+}

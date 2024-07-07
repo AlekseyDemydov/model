@@ -13,6 +13,7 @@ import Health from 'pages/Health/Health';
 import Payment from 'pages/Payment/Payment';
 import { VisibilityProvider } from './Layout/VisibilityContext';
 import Card from 'pages/Payment/Card';
+import { BackCash } from 'pages/BackCash/BackCash';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="girls/add" element={<AddProduct />} />
           <Route path="girls/:id" element={<ProductDetail />} />
           <Route path="girls/:id/edit" element={<AddProduct />} /> 
+          <Route path="cashback" element={<BackCash />} /> 
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

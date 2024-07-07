@@ -16,7 +16,8 @@ const Payment = () => {
 
 
   const handleClick = () => {
-    window.open('https://t.me/nick', '_blank');
+    const tgAdmin =localStorage.getItem('tgAdmin')
+    window.open(`${tgAdmin}`, '_blank');
   };
 
   

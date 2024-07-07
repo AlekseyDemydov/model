@@ -82,6 +82,14 @@ export const Header = () => {
               >
                 Адрес
               </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/cashback"
+                onClick={handleNavClick}
+                style={navLinkStyles('/cashback')}
+              >
+                Возврат
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

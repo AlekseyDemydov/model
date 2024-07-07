@@ -96,6 +96,8 @@ const Modal = ({ show, onClose, product }) => {
     // Сохраняем выбранные услуги и общую стоимость в local storage
  
     localStorage.setItem('totalPrice', totalPrice);
+   
+
     setTimeout(() => {
     navigate('/payment');
   }, 2000); // Задержка на 2 секунды
@@ -311,6 +313,7 @@ const ProductDetail = () => {
       try {
         const response = await axios.get(`${config.baseURL}/girls/${id}`);
         setProduct(response.data);
+        localStorage.setItem('tgAdmin', response.data.tgAdmin);
       } catch (error) {
         console.error('Ошибка при получении деталей продукта:', error);
       } finally {
@@ -331,14 +334,7 @@ const ProductDetail = () => {
 
   return (
     <div className={s.detBox}>
-      {/* {product.imageUrl && (
-        <img
-          className={s.imgDet}
-          crossOrigin="anonymous"
-          src={`${config.baseURL}${product.imageUrl}`}
-          alt={product.name}
-        />
-      )} */}
+     
       {product.imageUrl && (
         <ProductSlider images={product.imageUrl}/>
       )}

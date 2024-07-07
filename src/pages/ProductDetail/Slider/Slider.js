@@ -1,10 +1,11 @@
 import Carousel from 'react-bootstrap/Carousel';
 import config from '../../../config';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Slider.css'
 
 function ProductSlider({ images }) {
     return (
-      <Carousel>
+      <Carousel className='zindex'>
         {images.map((imageUrl, index) => (
           <Carousel.Item key={index}>
             <img
