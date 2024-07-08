@@ -92,26 +92,7 @@ const Payment = () => {
         console.error('Ошибка при копировании:', err);
       });
   };
-  const copyToClipboardBank = () => {
-    navigator.clipboard
-      .writeText(bank)
-      .then(() => {
-        Notiflix.Notify.success('Скопировано');
-      })
-      .catch(err => {
-        console.error('Ошибка при копировании:', err);
-      });
-  };
-  const copyToClipboardName = () => {
-    navigator.clipboard
-      .writeText(name)
-      .then(() => {
-        Notiflix.Notify.success('Скопировано');
-      })
-      .catch(err => {
-        console.error('Ошибка при копировании:', err);
-      });
-  };
+ 
   const totalPrice =
     parseInt(localStorage.getItem('totalPrice')) +
     parseInt(localStorage.getItem('meetingDuration'));
@@ -175,15 +156,11 @@ const Payment = () => {
         </div>
         <div>
           <input type="text" className={s.inputPay} value={bank} readOnly />
-          <button className={s.btnCopy} onClick={copyToClipboardBank}>
-          Копировать банк
-        </button>
+          
         </div>
         <div>
           <input type="text" className={s.inputPay} value={name} readOnly />
-          <button className={s.btnCopy} onClick={copyToClipboardName}>
-          Копировать имя
-        </button>
+          
         </div>
       </div>
 

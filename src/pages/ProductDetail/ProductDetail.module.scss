@@ -135,7 +135,7 @@
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #dc3545;
   color: white;
   border-radius: 5px;
 }
@@ -143,7 +143,9 @@
 .modalButton:hover {
   background-color: #0056b3;
 }
-
+.iconImg{
+  margin-right: 5px;
+}
 .inputBox {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
