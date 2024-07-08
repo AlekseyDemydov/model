@@ -15,25 +15,25 @@ const Modal = ({ show, onClose, product }) => {
   const [contactInfo, setContactInfo] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const [services, setServices] = useState({
-    car: false,
-    qwest: false,
-    card: false,
+    anal: false,
+    domination: false,
+    bondage: false,
     massage: false,
-    jump: false,
-    freegame: false,
-    goup: false,
+    gmg: false,
+    svyazivanie: false,
+    mgm: false,
     rolePlaying: false,
   });
   const navigate = useNavigate();
 
   const price = {
-    car: 1500,
-    qwest: 2000,
-    card: 1000,
+    anal: 1500,
+    domination: 2000,
+    bondage: 1000,
     massage: 1500,
-    jump: 2000,
-    freegame: 5000,
-    goup: 8500,
+    gmg: 2000,
+    svyazivanie: 5000,
+    mgm: 8500,
     rolePlaying: 3000,
   };
 
@@ -205,34 +205,34 @@ const Modal = ({ show, onClose, product }) => {
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.car}
-              onChange={() => handleServiceChange('car')}
+              checked={services.anal}
+              onChange={() => handleServiceChange('anal')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>Авто +{price.car}₽</p>
+          <p>Анал +{price.anal}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.qwest}
-              onChange={() => handleServiceChange('qwest')}
+              checked={services.domination}
+              onChange={() => handleServiceChange('domination')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>qwest +{price.qwest}₽</p>
+          <p>Доминирование +{price.domination}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.card}
-              onChange={() => handleServiceChange('card')}
+              checked={services.bondage}
+              onChange={() => handleServiceChange('bondage')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>card +{price.card}₽</p>
+          <p>Бондаж +{price.bondage}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -243,29 +243,40 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Массаж +{price.massage}₽</p>
+          <p>Массаж эро +{price.massage}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.freegame}
-              onChange={() => handleServiceChange('freegame')}
+              checked={services.svyazivanie}
+              onChange={() => handleServiceChange('svyazivanie')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>freegame +{price.freegame}₽</p>
+          <p>Связывание  +{price.svyazivanie}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
             <input
               type="checkbox"
-              checked={services.goup}
-              onChange={() => handleServiceChange('goup')}
+              checked={services.mgm}
+              onChange={() => handleServiceChange('mgm')}
             />
             <span className={s.slider}></span>
           </label>
-          <p>goup +{price.goup}₽</p>
+          <p>МЖМ +{price.mgm}₽</p>
+        </div>
+        <div className={s.formGroup}>
+          <label className={s.switch}>
+            <input
+              type="checkbox"
+              checked={services.gmg}
+              onChange={() => handleServiceChange('gmg')}
+            />
+            <span className={s.slider}></span>
+          </label>
+          <p>ЖМЖ +{price.gmg}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -278,17 +289,7 @@ const Modal = ({ show, onClose, product }) => {
           </label>
           <p>Ролевые игры +{price.rolePlaying}₽</p>
         </div>
-        <div className={s.formGroup}>
-          <label className={s.switch}>
-            <input
-              type="checkbox"
-              checked={services.jump}
-              onChange={() => handleServiceChange('jump')}
-            />
-            <span className={s.slider}></span>
-          </label>
-          <p>jump +{price.jump}₽</p>
-        </div>
+        
         <div className={s.modalActions}>
           <p className={s.totalPrice}>Итого: {totalPrice}₽</p>
           <button onClick={handlePaymentClick} className={s.modalButton}>
@@ -367,7 +368,7 @@ const ProductDetail = () => {
               )}
               <tr className={s.boxbtnBye}>
                 <button className={s.btnBye} onClick={() => setShowModal(true)}>
-                  Заказать игру
+                  Заказать девочку
                 </button>
               </tr>
             </tbody>

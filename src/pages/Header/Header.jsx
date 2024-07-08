@@ -1,7 +1,10 @@
 import React, {  useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-// import s from './Header.module.scss';
+import logo from './img/logo.png'
+import './Header.css'
+import s from './Header.module.scss'
+import tgwhite from './img/tgwhite.png';
 
 export const Header = () => {
   const location = useLocation();
@@ -20,7 +23,9 @@ export const Header = () => {
     navigate('/?page=1');
     setExpanded(false); // закрываем меню навигации после перехода
   };
-
+  const handleClickAdmin = () => {
+    window.open('https://t.me/nick', '_blank');
+  };
 
 
   return (
@@ -34,7 +39,7 @@ export const Header = () => {
       >
         <Container>
           <Navbar.Brand className="fs-1 linkLogo" as={Link} to="/?page=1" onClick={goToHomePage}>
-            ЛОГО
+            <img src={logo} alt="logo" className={s.logo}/>
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
@@ -90,6 +95,14 @@ export const Header = () => {
               >
                 Возврат
               </Nav.Link>
+              <div onClick={handleClickAdmin} className={s.tgbox}>
+                <img
+                  src={tgwhite}
+                  alt="tg"
+                  className={s.telegramLink}
+                />
+                Администрация                
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
