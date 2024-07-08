@@ -66,6 +66,9 @@
   border-radius: 15px;
   margin: 10px;
   color: white;
+&:hover{
+  background-color: #f3061d;
+}
 }
 // .boxPlus{
 //   display: flex;
@@ -141,10 +144,13 @@
 }
 
 .modalButton:hover {
-  background-color: #0056b3;
+  background-color: #dc3545;
 }
 .iconImg{
   margin-right: 5px;
+  @media screen and (max-width: 401px) {
+   margin-top: 8px;
+  }
 }
 .inputBox {
   display: grid;

@@ -32,26 +32,62 @@
 }
 .inputPay {
   flex-grow: 1;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 15px;
   margin-right: 5px;
+  background-color: #333333;
+  color: white;
+  width: 50%;
+}
+.inputPaySBP {
+  flex-grow: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin-right: 5px;
+  background-color: #1961e7;
+  color: white;
+  
+}
+.btnCopySBP {
+  background-color: #ec2f0e;
+  color: rgb(252, 248, 248);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: #ec2f0e;
+  }
+}
+.btnsend {
+  background-color: #d6ec0e;
+  color: rgb(8, 8, 8);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  &:hover {
+    background-color: #ec2f0e;
+  }
 }
 .boxSBP{
   border: solid 1px #ccc;
   margin-bottom: 10px;
   padding: 8px;
   border-radius: 15px;
+  margin-top: 10px;
 }
 .btnCopy {
-  background-color: #4caf50;
-  color: white;
+  background-color: #ec2f0e;
+  color: rgb(248, 247, 247);
   padding: 10px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 15px;
   cursor: pointer;
   &:hover {
-    background-color: #45a049;
+    background-color: #ec2f0e;
   }
 }
 

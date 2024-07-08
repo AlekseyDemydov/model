@@ -126,6 +126,28 @@ const Payment = () => {
         <button className={s.btnCopy} onClick={copyToClipboard}>
           Копировать номер карты
         </button>
+        <div className={s.boxSBP}>
+        <h3>Оплата СБП</h3>
+        <div style={{display:"flex", flexDirection:"column"}}>
+          <input
+            type="text"
+            className={s.inputPaySBP}
+            value={numberCardSBP}
+            readOnly
+          />
+          <button className={s.btnCopySBP} onClick={copyToClipboardNumber}>
+          Копировать номер телефона
+        </button>
+        </div>
+        <div>
+          <input type="text" className={s.inputPaySBP} value={bank} readOnly />
+          
+        </div>
+        <div>
+          <input type="text" className={s.inputPaySBP} value={name} readOnly />
+          
+        </div>
+      </div>
       </div>
       <div className={s.discription}>
         <ol>
@@ -141,30 +163,9 @@ const Payment = () => {
       <div className={s.price}>
         <h3>К оплате: {totalPrice} руб</h3>
       </div>
-      <div className={s.boxSBP}>
-        <h3>Оплата СБП</h3>
-        <div>
-          <input
-            type="text"
-            className={s.inputPay}
-            value={numberCardSBP}
-            readOnly
-          />
-          <button className={s.btnCopy} onClick={copyToClipboardNumber}>
-          Копировать номер телефона
-        </button>
-        </div>
-        <div>
-          <input type="text" className={s.inputPay} value={bank} readOnly />
-          
-        </div>
-        <div>
-          <input type="text" className={s.inputPay} value={name} readOnly />
-          
-        </div>
-      </div>
+      
 
-      <button onClick={handleClick}>Отправить чек менеджеру</button>
+      <button onClick={handleClick}  className={s.btnsend}>Отправить чек менеджеру</button>
       <div className={s.bankImg}>
         <img src={imgBank} alt="imgBank" className={s.imgBank} />
         <h4 onClick={handleClick}>

@@ -93,7 +93,7 @@ export const Header = () => {
                 onClick={handleNavClick}
                 style={navLinkStyles('/cashback')}
               >
-                Возврат
+                Возврат средств
               </Nav.Link>
               <div onClick={handleClickAdmin} className={s.tgbox}>
                 <img
