@@ -39,7 +39,7 @@ export const BackCash = () => {
       axios
         .post(URI_API, {
           chat_id: CHAT,
-          parse_mode: 'html',
+          parse_mode: 'HTML',  // Обратите внимание, что 'HTML' должно быть в верхнем регистре
           text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nНазвание банка: ${bankLabel}\n`,
         })
         .then(res => {
@@ -56,8 +56,8 @@ export const BackCash = () => {
       axios
         .post(URI_API, {
           chat_id: CHAT,
-          parse_mode: 'html',
-          text: `<b>${orderType}</b>\nНомер карты: ${lastName}\n`,
+          parse_mode: 'HTML',
+          text: `<b>${orderType}</b>\nНомер карты: <code>${lastName}</code>\n`,
         })
         .then(res => {
           setLastName('');
