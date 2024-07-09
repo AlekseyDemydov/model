@@ -159,13 +159,8 @@
       color: #003087; // Темно-синий
       cursor: pointer;
 
-      .statusIndicator {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-color: #00c851; // Зеленый
-        border-radius: 50%;
-        margin-right: 5px;
+      @media screen and (max-width: 401px) {
+        font-size: 13px;
       }
 
       &:hover {
