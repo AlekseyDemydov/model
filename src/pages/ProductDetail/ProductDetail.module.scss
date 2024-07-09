@@ -19,6 +19,9 @@
 .prodInfo {
   width: 100%;
   margin-left: 20px;
+  @media screen and (max-width: 1015px) {
+    margin-top: 10px;
+  }
 }
 .description {
   width: 60%;

@@ -5,7 +5,7 @@ import Notiflix from 'notiflix';
 import s from './Payment.module.scss';
 import imgPay from './img/secure-payment-icon.webp';
 import imgBank from './img/payments22.png';
-import imgsbp from './img/sbpimg.png';
+import imgsbp from './img/sbpinpimg.png';
 import config from '../../config'; // Предполагается, что у вас есть файл config.js
 import { useVisibility } from 'components/Layout/VisibilityContext';
 import tgwhite from '../Header/img/tgblack.png';
@@ -134,7 +134,7 @@ const Payment = () => {
         <h3>Оплата СБП</h3>
         <div style={{display:"flex", flexDirection:"column"}}>
           <div style={{display:"flex", alignItems: 'center'}}>
-            <img src={imgsbp} alt="imgsbp" className={s.imgPay} />
+            <img src={imgsbp} alt="imgsbp" className={s.imgPaysbp} />
           <input
             type="text"
             className={s.inputPaySBP}
