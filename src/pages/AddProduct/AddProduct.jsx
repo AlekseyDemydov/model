@@ -60,8 +60,8 @@ const AddProduct = () => {
       for (let i = 0; i < files.length; i++) {
         formData.append("images", files[i]);
       }
-      const { data } = await axios.post("http://localhost:4444/upload", formData);
-      // const { data } = await axios.post("/upload", formData);
+      // const { data } = await axios.post("http://localhost:4444/upload", formData);
+      const { data } = await axios.post(`${config.baseURL}/upload`, formData);
       // data.urls содержит массив всех загруженных ссылок
       setProductData((prevData) => ({ ...prevData, imageUrl: data.urls }));
     } catch (err) {
@@ -141,7 +141,7 @@ const AddProduct = () => {
           multiple // Поддержка множественной загрузки файлов
         />
         <br />
-        {productData.imageUrl && (
+        {/* {productData.imageUrl && (
           <div>
             {productData.imageUrl.map((url, index) => (
               <img
@@ -153,7 +153,7 @@ const AddProduct = () => {
               />
             ))}
           </div>
-        )}
+        )} */}
         <br />
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Загрузка..." : id ? "Обновить модель" : "Добавить модель"}
