@@ -1,6 +1,8 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import axios from 'axios';
+import config from '../../config';
 import logo from './img/logo.png'
 import './Header.css'
 import s from './Header.module.scss'
@@ -10,6 +12,7 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
+  const [tgManager, setTgManager] = useState('');
 
   const handleNavClick = () => setExpanded(false);
 
@@ -17,19 +20,36 @@ export const Header = () => {
     fontWeight: 'bold',
   });
 
+  useEffect(() => {
 
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${config.baseURL}/card/6694e9ad166628e0d24a261e`);
+        const { data } = response;
+        setTgManager(data.tgManager);
+        
+      } catch (error) {
+        console.error("Ошибка при получении данных модели:", error);
+      }
+    };
+
+    fetchData();
+
+    
+  }, []);
 
   const goToHomePage = () => {
     navigate('/?page=1');
     setExpanded(false); // закрываем меню навигации после перехода
   };
   const handleClickAdmin = () => {
-    window.open('https://t.me/nick', '_blank');
+    window.open(`${tgManager}`, '_blank');
   };
 
 
   return (
     <>
+  
       <Navbar
         // fixed="top"
         collapseOnSelect

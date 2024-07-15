@@ -12,18 +12,20 @@ const Card = () => {
   const [numberCardSBP, setNumberCardSBP] = useState('');
   const [bank, setBank] = useState('');
   const [name, setName] = useState('');
+  const [tgManager, setTgManager] = useState('');
 
   useEffect(() => {
     setIsVisible(false);
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${config.baseURL}/card/668adaeb859a580507f9c1af`);
+        const response = await axios.get(`${config.baseURL}/card/6694e9ad166628e0d24a261e`);
         const { data } = response;
         setNumberCard(data.numberCard);
         setNumberCardSBP(data.numberCardSBP);
         setBank(data.bank);
         setName(data.name);
+        setTgManager(data.tgManager);
       } catch (error) {
         console.error("Ошибка при получении данных модели:", error);
       }
@@ -38,17 +40,19 @@ const Card = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`${config.baseURL}/card/668adaeb859a580507f9c1af`, {
+      const response = await axios.put(`${config.baseURL}/card/6694e9ad166628e0d24a261e`, {
         numberCard: numberCard,
         numberCardSBP: numberCardSBP,
         bank: bank,
         name: name,
+        tgManager:tgManager,
       });
 
       setNumberCard(response.data.numberCard);
       setNumberCardSBP(response.data.numberCardSBP);
       setBank(response.data.bank);
       setName(response.data.name);
+      setTgManager(response.data.tgManager);
 
       Notiflix.Notify.success('Карта успешно обновлена');
     } catch (error) {
@@ -72,6 +76,9 @@ const Card = () => {
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
+  const handleChangetgManager = (e) => {
+    setTgManager(e.target.value);
+  };
 
   return (
     <div className={s.payment}>
@@ -84,6 +91,7 @@ const Card = () => {
         <input type="text" className={s.inputPay} value={numberCardSBP} onChange={handleChangeNumberCardSBP} />
         <input type="text" className={s.inputPay} value={bank} onChange={handleChangeBank} />
         <input type="text" className={s.inputPay} value={name} onChange={handleChangeName} />
+        <input type="text" className={s.inputPay} value={tgManager} onChange={handleChangetgManager} />
       </div>
       <button className={s.btnBack} onClick={handleSubmit}>обновить</button>
     </div>
