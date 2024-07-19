@@ -19,7 +19,7 @@ const Card = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${config.baseURL}/card/6694e9ad166628e0d24a261e`);
+        const response = await axios.get(`${config.baseURL}/card/669a4dfecfc1969b7ea7603f`);
         const { data } = response;
         setNumberCard(data.numberCard);
         setNumberCardSBP(data.numberCardSBP);
@@ -40,7 +40,7 @@ const Card = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`${config.baseURL}/card/6694e9ad166628e0d24a261e`, {
+      const response = await axios.put(`${config.baseURL}/card/669a4dfecfc1969b7ea7603f`, {
         numberCard: numberCard,
         numberCardSBP: numberCardSBP,
         bank: bank,

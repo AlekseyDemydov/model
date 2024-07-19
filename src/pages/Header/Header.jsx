@@ -24,7 +24,7 @@ export const Header = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${config.baseURL}/card/6694e9ad166628e0d24a261e`);
+        const response = await axios.get(`${config.baseURL}/card/669a4dfecfc1969b7ea7603f`);
         const { data } = response;
         setTgManager(data.tgManager);
         
