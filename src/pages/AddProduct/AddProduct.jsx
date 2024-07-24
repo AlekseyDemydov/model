@@ -15,6 +15,14 @@ const AddProduct = () => {
     priceOne: 0,
     priceThree: 0,
     priceNight: 0,
+    anal: 0,
+    domination: 0,
+    bondage: 0,
+    massage: 0,
+    gmg: 0,
+    svyazivanie: 0,
+    mgm: 0,
+    rolePlaying: 0,
     imageUrl: ""
   });
 
@@ -36,6 +44,17 @@ const AddProduct = () => {
             priceOne: data.priceOne || 0,
             priceThree: data.priceThree || 0,
             priceNight: data.priceNight || 0,
+
+            anal: data.anal || 0,
+            domination: data.domination || 0,
+            bondage: data.bondage || 0,
+            massage: data.massage || 0,
+            gmg: data.gmg || 0,
+            svyazivanie: data.svyazivanie || 0,
+            mgm: data.mgm || 0,
+            rolePlaying: data.rolePlaying || 0,
+
+
             tgAdmin: data.tgAdmin || "",
             imageUrl: data.imageUrl || ""
           });
@@ -132,8 +151,43 @@ const AddProduct = () => {
           Цена за ночь:
           <input type="number" name="priceNight" value={productData.priceNight} onChange={handleChange} />
         </label>
+
+
+
+        <label>
+        anal:
+          <input type="number" name="anal" value={productData.anal} onChange={handleChange} />
+        </label>
+        <label>
+        domination:
+          <input type="number" name="domination" value={productData.domination} onChange={handleChange} />
+        </label>
+        <label>
+        bondage:
+          <input type="number" name="bondage" value={productData.bondage} onChange={handleChange} />
+        </label>
+        <label>
+        massage:
+          <input type="number" name="massage" value={productData.massage} onChange={handleChange} />
+        </label>
+        <label>
+        gmg:
+          <input type="number" name="gmg" value={productData.gmg} onChange={handleChange} />
+        </label>
+        <label>
+        svyazivanie:
+          <input type="number" name="svyazivanie" value={productData.svyazivanie} onChange={handleChange} />
+        </label>
+        <label>
+        mgm:
+          <input type="number" name="mgm" value={productData.mgm} onChange={handleChange} />
+        </label>
+        <label>
+        rolePlaying:
+          <input type="number" name="rolePlaying" value={productData.rolePlaying} onChange={handleChange} />
+        </label>
         <br />
-        
+
         <input
           ref={inputFileRef}
           type="file"
