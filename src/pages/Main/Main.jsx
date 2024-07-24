@@ -26,9 +26,9 @@ const Main = () => {
     if (!storedCity) {
       setShowModal(true);
     } else {
-      setTimeout(() => {
+      // setTimeout(() => {
         setShowList(true);
-      }, 2000); // Задержка на 2 секунды
+      // }, 2000); // Задержка на 2 секунды
     }
   }, []);
 
@@ -62,9 +62,9 @@ const Main = () => {
   const handleCitySubmit = () => {
     localStorage.setItem('city', city);
     setShowModal(false);
-    setTimeout(() => {
+    // setTimeout(() => {
       setShowList(true);
-    }, 2000); // Задержка на 2 секунды после закрытия модалки
+    // }, 2000); // Задержка на 2 секунды после закрытия модалки
   };
 
   const handleCityChange = (selectedOption) => {
