@@ -28,14 +28,14 @@ const Modal = ({ show, onClose, product }) => {
   const navigate = useNavigate();
 
   const price = {
-    anal: 1500,
-    domination: 2000,
-    bondage: 1000,
-    massage: 1500,
-    gmg: 2000,
-    svyazivanie: 5000,
-    mgm: 8500,
-    rolePlaying: 3000,
+    anal: `${product.anal}`,
+    domination: `${product.domination}`,
+    bondage: `${product.bondage}`,
+    massage: `${product.massage}`,
+    gmg: `${product.gmg}`,
+    svyazivanie: `${product.svyazivanie}`,
+    mgm: `${product.mgm}`,
+    rolePlaying: `${product.rolePlaying}`,
   };
 
   useEffect(() => {
@@ -72,7 +72,8 @@ const Modal = ({ show, onClose, product }) => {
       // Добавляем стоимость всех выбранных услуг
       for (const [key, value] of Object.entries(newServices)) {
         if (value) {
-          newTotalPrice += price[key];
+          newTotalPrice += parseFloat(price[key]);
+          
         }
       }
 
@@ -211,7 +212,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Анал +{product.anal}₽</p>
+          <p>Анал +{price.anal}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -222,7 +223,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Доминирование +{product.domination}₽</p>
+          <p>Доминирование +{price.domination}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -233,7 +234,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Бондаж +{product.bondage}₽</p>
+          <p>Бондаж +{price.bondage}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -244,7 +245,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Массаж эро +{product.massage}₽</p>
+          <p>Массаж эро +{price.massage}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -255,7 +256,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Связывание  +{product.svyazivanie}₽</p>
+          <p>Связывание  +{price.svyazivanie}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -266,7 +267,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>МЖМ +{product.mgm}₽</p>
+          <p>МЖМ +{price.mgm}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -277,7 +278,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>ЖМЖ +{product.gmg}₽</p>
+          <p>ЖМЖ +{price.gmg}₽</p>
         </div>
         <div className={s.formGroup}>
           <label className={s.switch}>
@@ -288,7 +289,7 @@ const Modal = ({ show, onClose, product }) => {
             />
             <span className={s.slider}></span>
           </label>
-          <p>Ролевые игры +{product.rolePlaying}₽</p>
+          <p>Ролевые игры +{price.rolePlaying}₽</p>
         </div>
         
         <div className={s.modalActions}>
